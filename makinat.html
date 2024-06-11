@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="shortcut icon" href="assets/img/icon.png" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wheels & Deals</title>
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/makinat.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+      integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body onload="ShowItems()">
+    <!-- <div class="loader">
+      <div class="loader-img">
+        <img
+          class="loader-img-bg"
+          src="./assets/img/Harta_e_Kosovës.svg"
+          alt="Loader Img"
+        />
+        <div class="svg-route">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            data-prefix="fas"
+            data-icon="map-marker-alt"
+            class="svg-inline--fa fa-map-marker-alt fa-w-12"
+            role="img"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 384 512"
+          >
+            <path
+              fill="currentColor"
+              d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"
+            ></path>
+          </svg>
+        </div>
+      </div>
+      <p class="loader-txt">Wheels & <span>Deals</span></p>
+    </div> -->
+    <nav>
+      <a class="nav-btn-Faq" href="index.html">Ballina</a>
+      <a class="nav-btn-Faq" href="faq.html">FAQ</a>
+    </nav>
+    <section class="header">
+      <h1 class="header-txt">Wheels & <span>Deals</span></h1>
+    </section>
+
+    <main>
+      <section class="category">
+        <section class="category-select">
+          <h1 class="category-title">Kategorite:</h1>
+          <select
+            name="qytetet"
+            id="qytetet"
+            class="category-select-qytetet"
+            onchange="citySelect()"
+          >
+            <option value="" hidden>Qyteti</option>
+            <option value="">Gjith Kosova</option>
+            <option value="prishtine">Prishtine</option>
+            <option value="mitrovice">Mitrovice</option>
+            <option value="peje">Peje</option>
+            <option value="prizeren">Prizeren</option>
+            <option value="ferizaj">Ferizaj</option>
+            <option value="gjilan">Gjilan</option>
+            <option value="gjakove">Gjakove</option>
+          </select>
+          <label for="tegjitha" class="category-select-marka">
+            <input
+              type="checkbox"
+              name="tegjitha"
+              id="tegjitha"
+              value="tegjitha"
+              onclick="checkActive('tegjitha')"
+            />
+            Te gjitha
+          </label>
+          <label for="natyre" class="category-select-marka">
+            <input
+              type="checkbox"
+              name="audi"
+              id="audi"
+              value="audi"
+              onclick="checkActive('audi')"
+            />
+            Audi
+          </label>
+          <label for="liqene" class="category-select-marka">
+            <input
+              type="checkbox"
+              name="bmw"
+              id="bmw"
+              value="bmw"
+              onclick="checkActive('bmw')"
+            />
+            BMW
+          </label>
+          <label for="ujevara" class="category-select-marka">
+            <input
+              type="checkbox"
+              name="mercedes"
+              id="mercedes"
+              value="mercedes"
+              onclick="checkActive('mercedes')"
+            />
+            Mercedes
+          </label>
+          <label for="volkswagen" class="category-select-marka">
+            <input
+              type="checkbox"
+              name="volkswagen"
+              id="volkswagen"
+              value="volkswagen"
+              onclick="checkActive('volkswagen')"
+            />
+            Volkswagen
+          </label>
+          <label for="tetjera" class="category-select-marka">
+            <input
+              type="checkbox"
+              name="tetjera"
+              id="tetjera"
+              value="tetjera"
+              onclick="checkActive('tetjera')"
+            />
+            Të tjera
+          </label>
+        </section>
+        <section class="category-selected" id="category-selected"></section>
+      </section>
+      <section class="styling">
+        <span>Numri i lokacione ne nje faqe:</span>
+        <div class="btn-items-showed">
+          <input
+            type="radio"
+            name="itemsNumber"
+            id="number6"
+            onclick="changeNumber(6)"
+          />
+          <label for="number6">6</label>
+          <input
+            type="radio"
+            name="itemsNumber"
+            id="number10"
+            checked
+            onclick="changeNumber(10)"
+          />
+          <label for="number10">10</label>
+          <input
+            type="radio"
+            name="itemsNumber"
+            id="number20"
+            onclick="changeNumber(20)"
+          />
+          <label for="number20">20</label>
+        </div>
+      </section>
+      <section class="container">
+        <div id="items-container"></div>
+        <div id="page-numbers"></div>
+      </section>
+    </main>
+    <footer>
+      <p>&copy Wheels & Deals 2022</p>
+    </footer>
+    <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/data.js"></script>
+    <script src="./assets/js/category.js"></script>
+    <script src="./assets/js/popup.js"></script>
+  </body>
+</html>
