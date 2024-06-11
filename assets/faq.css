@@ -1,0 +1,197 @@
+body {
+    min-height: 100vh;
+    padding-bottom: 80px;
+  }
+  nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .nav-btn-Faq {
+    display: inline-block;
+    text-decoration: none;
+    color: var(--first-font-color);
+    font-size: 1.5rem;
+    margin: 0 50px;
+    text-align: center;
+    transition: 0.1s;
+  }
+  .nav-btn-Faq:hover,
+  .nav-btn-Faq:focus {
+    border-bottom: 2px solid var(--first-font-color);
+  }
+  .header {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+      url("../img/faqcover2.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: left;
+    -webkit-animation: bgAnimate 30s linear alternate infinite;
+    animation: bgAnimate 30s linear alternate infinite;
+  }
+  @-webkit-keyframes bgAnimate {
+    0% {
+      background-position: left;
+    }
+    100% {
+      background-position: right;
+    }
+  }
+  @keyframes bgAnimate {
+    0% {
+      background-position: left;
+    }
+    100% {
+      background-position: right;
+    }
+  }
+  .header-txt {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2.5rem;
+    color: white;
+  }
+  .container {
+    width: 90%;
+    margin: 0 auto;
+    padding: 50px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  .details,
+  .contactUs {
+    width: 500px;
+  }
+  .details {
+    background: var(--first-color);
+    color: white;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    margin: 30px auto;
+    cursor: pointer;
+    transition: 0.3s;
+    outline: none;
+  }
+  .details:hover,
+  .details:focus {
+    box-shadow: 0px 0px 10px 10px lightgray;
+    background: white;
+    color: black;
+  }
+  .details:hover .txt-answer,
+  .details:focus .txt-answer {
+    border-top: 1px solid black;
+  }
+  .summary {
+    font-weight: bold;
+    font-size: 1.2rem;
+    outline: none;
+  }
+  .txt-answer {
+    border-top: 1px solid white;
+  }
+  .contactUs {
+    display: flex;
+    flex-direction: column;
+  }
+  .contactUs-title {
+    margin-bottom: 20px;
+  }
+  .contactUs-mail {
+    color: black;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+  }
+  .contactUs-mail svg {
+    width: 30px;
+    height: 30px;
+    margin-right: 20px;
+  }
+  .video{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: center; 
+    align-items: center;
+    border-radius: 2px;
+    gap: 10px;
+    background: var(--first-color);
+  }
+  .video p{
+    color: white;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: x-large;
+    text-align: center;
+    width: 40%;
+  }
+
+
+  footer {
+    position: relative;
+    bottom: -85px;
+    width: 100%;
+    background: var(--first-color);
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 1.3rem;
+  }
+  
+  @media only screen and (max-height: 800px) {
+    body {
+      padding: 0;
+    }
+    footer {
+      position: static;
+    }
+  }
+  @media only screen and (max-width: 1300px) {
+    .details,
+    .contactUs {
+      width: 400px;
+    }
+  }
+  @media only screen and (max-width: 1300px) {
+    .container {
+      padding: 50px 0;
+    }
+  }
+  @media only screen and (max-width: 600px) {
+    .nav-btn-Faq {
+      font-size: 1.2rem;
+      margin: 0;
+      width: 150px;
+    }
+    .contactUs-title {
+      font-size: 1.3rem;
+    }
+    .contactUs-mail {
+      font-size: 1rem;
+    }
+  }
+  @media only screen and (max-width: 450px) {
+    .details,
+    .contactUs {
+      width: 300px;
+    }
+    .contactUs-title {
+      font-size: 1rem;
+    }
+    .contactUs-mail svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  
