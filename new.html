@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="shortcut icon" href="assets/img/icon.png" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wheels & Deals</title>
+    <link rel="stylesheet" href="./assets/css/main.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <nav>
+      <ul class="nav-btns">
+        <li class="nav-btns-btn">
+          <a class="nav-btns-btn-links" href="index.html">Ballina</a>
+        </li>
+        <li class="nav-btns-btn">
+          <a class="nav-btns-btn-links" href="faq.html">FAQ</a>
+        </li>
+        <li class="nav-btns-btn">
+          <a class="nav-btns-btn-links" href="new.html">NEW!</a>
+        </li>
+      </ul>
+    </nav>
+    <!doctype html>
+    <html>
+      <head>
+        <title>Scenegraph</title>
+      </head>
+      <body>
+        <script type="module">
+       import { Application, Assets, Graphics, Sprite, RenderTexture, Point } from 'https://cdn.skypack.dev/pixi.js';
+    (async () =>
+    {
+        // Create a new application
+        const app = new Application();
+    
+        // Initialize the application
+        await app.init({ resizeTo: window });
+    
+        // Append the application canvas to the document body
+        document.body.appendChild(app.canvas);
+    
+        // prepare circle texture, that will be our brush
+        const brush = new Graphics().circle(0, 0, 50).fill({ color: 0xffffff });
+    
+        // Create a line that will interpolate the drawn points
+        const line = new Graphics();
+    
+        // Load the textures
+        await Assets.load(['assets/img/cars/bentley/bentleyfoto1.jpg', 'https://pixijs.com/assets/bg_rotate.jpg']);
+    
+        const { width, height } = app.screen;
+        const stageSize = { width, height };
+    
+        const background = Object.assign(Sprite.from('https://pixijs.com/assets/bg_rotate.jpg'), stageSize);
+        const imageToReveal = Object.assign(Sprite.from('assets/img/cars/bentley/bentleyfoto1.jpg'), stageSize);
+        const renderTexture = RenderTexture.create(stageSize);
+        const renderTextureSprite = new Sprite(renderTexture);
+    
+        imageToReveal.mask = renderTextureSprite;
+    
+        app.stage.addChild(background, imageToReveal, renderTextureSprite);
+    
+        app.stage.eventMode = 'static';
+        app.stage.hitArea = app.screen;
+        app.stage
+            .on('pointerdown', pointerDown)
+            .on('pointerup', pointerUp)
+            .on('pointerupoutside', pointerUp)
+            .on('pointermove', pointerMove);
+    
+        let dragging = false;
+        let lastDrawnPoint = null;
+    
+        function pointerMove({ global: { x, y } })
+        {
+            if (dragging)
+            {
+                brush.position.set(x, y);
+                app.renderer.render({
+                    container: brush,
+                    target: renderTexture,
+                    clear: false,
+                    skipUpdateTransform: false,
+                });
+                // Smooth out the drawing a little bit to make it look nicer
+                // this connects the previous drawn point to the current one
+                // using a line
+                if (lastDrawnPoint)
+                {
+                    line.clear().moveTo(lastDrawnPoint.x, lastDrawnPoint.y).lineTo(x, y).stroke({ width: 100, color: 0xffffff });
+                    app.renderer.render({
+                        container: line,
+                        target: renderTexture,
+                        clear: false,
+                        skipUpdateTransform: false,
+                    });
+                }
+                lastDrawnPoint = lastDrawnPoint || new Point();
+                lastDrawnPoint.set(x, y);
+            }
+        }
+    
+        function pointerDown(event)
+        {
+            dragging = true;
+            pointerMove(event);
+        }
+    
+        function pointerUp(event)
+        {
+            dragging = false;
+            lastDrawnPoint = null;
+        }
+    })();
+    </script>
+      </body>
+    </html>
